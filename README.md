@@ -9,9 +9,16 @@ run this is by using Nix.
 ## Intalling Nix
 
 ### Installing Nix on Windows (using WSL2)
-1. If you don't have it already, install WSL2 (Windows Subsystem for Linux 2)
-2. Install Nix:
+1. If you don't have it already, install WSL2 (Windows Subsystem for Linux 2).
+Open a PowerShell prompt as administrator and type:
+```powershell
+PS > wsl --install
+```
+Now reboot your machine.
+
+2. Enter WSL and Install Nix (from either PowerShell or CMD):
 ```bash
+$ wsl
 $ sh <(curl -L https://nixos.org/nix/install) --no-daemon
 ```
 
@@ -28,7 +35,7 @@ $ sh <(curl -L https://nixos.org/nix/install) --daemon
 ## Installing the engr-cert-gen application
 
 ```bash
-$ nix-env -i git   # This is optional if you already have git installed
+$ nix-env -i git   # This is optional if you already have git installed and you're not running Windows
 $ curl -o engr_cert_gen.nix -L https://raw.githubusercontent.com/Texas-A-M-College-of-Engineering/engr-certificate-generation/main/engr_cert_gen.nix
 $ nix-env -i $(nix-build engr_cert_gen.nix)
 ```
@@ -47,7 +54,7 @@ directory will contain the *.csr* file that you will provide to cert.tamu.edu. T
 the *.key* file that will be needed along with the cert that you download from cert.tamu.edu.
 
 ### Example cert creation
-If you've installed both Nix and the engr-cert-gen application, you can generate a cert as follows:
+If you've installed both Nix and the engr-cert-gen application, you can generate a cert as follows (using the CLI):
 
 1. Switch to your certificate directory (or create one if this is your first time)
 This command creates a cert directory if it doesn't exist, and switches to it
