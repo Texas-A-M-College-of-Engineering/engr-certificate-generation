@@ -1,6 +1,3 @@
-#This will fetch anything we need from our own repo once it exists
-#builtins.fetchGit { url = "https://github.com/NixOS/patchelf"; }
-
 with (import <nixpkgs> {});
 let
     repo = builtins.fetchGit {
@@ -9,7 +6,7 @@ let
     };
 in
     derivation {
-      name = "engr-cert-gen";
+      name = "engr_cert_gen";
       builder = "${bash}/bin/bash";
       args = [ "${repo.outPath}/builder.sh" ];
       inherit bash coreutils openssl python310;
