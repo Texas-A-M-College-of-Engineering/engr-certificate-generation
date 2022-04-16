@@ -18,8 +18,8 @@ Now reboot your machine.
 
 2. Enter WSL and Install Nix (from either PowerShell or CMD):
 ```bash
-$ wsl
-$ sh <(curl -L https://nixos.org/nix/install) --no-daemon
+PS > wsl
+PS > sh <(curl -L https://nixos.org/nix/install) --no-daemon
 ```
 
 ### Installing Nix on Mac
