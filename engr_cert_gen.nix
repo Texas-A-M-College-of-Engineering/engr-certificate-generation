@@ -6,7 +6,7 @@ let
     };
 in
     derivation {
-      name = "engr_cert_gen";
+      name = "engr-cert-gen";
       builder = "${bash}/bin/bash";
       args = [ "${repo.outPath}/builder.sh" ];
       inherit bash coreutils openssl python310;
