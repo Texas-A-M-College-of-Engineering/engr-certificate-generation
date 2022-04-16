@@ -4,7 +4,7 @@ This is a simple python script to generate CSRs for engr.tamu.edu
 certificates. You can optionally specify multiple FQDNs to create SAN certs.
 
 Although you can install OpenSSL and Python3 yourself, the recommended way to
-run this is by using Nix.
+run this is by using Nix. Note.
 
 ## Intalling Nix
 
@@ -28,7 +28,9 @@ $ sh <(curl -L https://nixos.org/nix/install) --daemon
 ## Installing the engr-cert-gen application
 
 ```bash
-$ nix-env -i $(nix-build <(curl https://raw.githubusercontent.com/Texas-A-M-College-of-Engineering/engr-certificate-generation/main/engr_cert_gen.nix))
+$ nix-env -i git   # This is optional if you already have git installed
+$ curl -o engr_cert_gen.nix -L https://raw.githubusercontent.com/Texas-A-M-College-of-Engineering/engr-certificate-generation/main/engr_cert_gen.nix
+$ nix-env -i $(nix-build engr_cert_gen.nix)
 ```
 
 ## Generating CSRs (Certificate Signing Requests)
