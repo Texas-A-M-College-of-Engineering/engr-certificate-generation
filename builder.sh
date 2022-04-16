@@ -2,12 +2,12 @@
 
 export PATH=$coreutils/bin
 
-mkdir $out
+mkdir -p $out/bin
 
-cp $src $out/gencert.py
-cat <<EOF > $out/engr-cert-gen
+cp $src $out/bin/gencert.py
+cat <<EOF > $out/bin/engr-cert-gen
 #!${bash}/bin/bash
 PATH=${PATH}:${python310}/bin:${openssl}/bin
-python $out/gencert.py "\$@"
+python $out/bin/gencert.py "\$@"
 EOF
-chmod +x $out/engr-cert-gen
+chmod +x $out/bin/engr-cert-gen

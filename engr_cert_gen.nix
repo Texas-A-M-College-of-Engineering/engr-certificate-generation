@@ -9,6 +9,7 @@ in
       name = "engr-cert-gen";
       builder = "${bash}/bin/bash";
       args = [ "${repo.outPath}/builder.sh" ];
+      #args = [ ./builder.sh ];
       inherit bash coreutils openssl python310;
       src = "${repo.outPath}/gencert.py";
       system = builtins.currentSystem;
