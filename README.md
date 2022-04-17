@@ -4,7 +4,7 @@ This is a simple python script to generate CSRs for engr.tamu.edu
 certificates. You can optionally specify multiple FQDNs to create SAN certs.
 
 Although you can install OpenSSL and Python3 yourself, the recommended way to
-run this is by using Nix.
+install the application and dependencies is using Nix.
 
 ## Intalling Nix
 
@@ -33,31 +33,30 @@ $ sh <(curl -L https://nixos.org/nix/install) --daemon
 ```
 
 ## Installing the engr-cert-gen application
-
 ```bash
-$ nix-env -i git   # This is optional if you already have git installed and you're not running Windows
+$ nix-shell -p git
 $ curl -o engr_cert_gen.nix -L https://raw.githubusercontent.com/Texas-A-M-College-of-Engineering/engr-certificate-generation/main/engr_cert_gen.nix
 $ nix-env -i $(nix-build engr_cert_gen.nix)
+$ exit
 ```
 
 ## Generating CSRs (Certificate Signing Requests)
-CSRs, or Certificate Signing Requests, are what you use to have a certificate signed by a Certificate Authority.
-You can take a CSR and go to [cert.tamu.edu](https://cert.tamu.edu) and have a certificate signed, which results
-in a valid, usable certificate.
+CSRs, or Certificate Signing Requests, are what you use to get a certificate signed by a Certificate Authority.
+You can use this application to create a CSR and then [Request an SSL Certificate](https://cert.tamu.edu/request/add/).
 
-You should create your own certificate directory that you switch to every time that you generate a new CSR.
+You should create your own certificate working directory that you switch to every time that you generate a new CSR.
 Then, you simply run the `engr-cert-gen` application with one or more FQDNs (Fully Qualified Domain Names).
 If you specify more than one name at a time, a SAN cert CSR is created for you.
 
-When you run the `engr-cert-gen` application, it will create two directories, *certs* and *private*. The *certs* 
+The first time you run the `engr-cert-gen` application, it will create two directories, *certs* and *private*. The *certs* 
 directory will contain the *.csr* file that you will provide to cert.tamu.edu. The *private* directory will contain
-the *.key* file that will be needed along with the cert that you download from cert.tamu.edu.
+the *.key* file that will be needed along with the new cert that you download from cert.tamu.edu.
 
 ### Example cert creation
 If you've installed both Nix and the engr-cert-gen application, you can generate a cert as follows (using the CLI):
 
-1. Switch to your certificate directory (or create one if this is your first time)
-This command creates a cert directory if it doesn't exist, and switches to it
+1. Switch to your certificate working directory (or create one if this is your first time)
+This command creates a certificate working directory if it doesn't exist, and switches to it
 ```bash
 $ cd ~/engr_certs || mkdir ~/engr_certs && cd ~/engr_certs
 ```
@@ -75,7 +74,6 @@ This would have created a SAN cert that was valid for both FQDNs.
 3. Get the CSR contents or file. When you go to cert.tamu.edu, it will ask for you to either paste the CSR
 contents (text), or provide the CSR file. The last step output the CSR contents to the screen, so you can
 just copy that text. An example of the CSR output text that you want to copy/paste would be:
-
 ```
 -----BEGIN CERTIFICATE REQUEST-----
 MIIC2jCCAcICAQAwgZQxCzAJBgNVBAYTAlVTMQ4wDAYDVQQIDAVUZXhhczEYMBYG
@@ -108,7 +106,7 @@ $ ls certs/blaketest.engr.tamu.edu.csr
 ```
 
 You could copy/paste the contents of this file, or you could upload the file itself to cert.tamu.edu. Cert.tamu.edu
-gives you both options when creating a certificate.
+gives you both options when requesting a certificate.
 
 ## Using a certificate
 Once your certificate is ready from cert.tamu.edu (you will receive an email), you download the certificate. However,
@@ -123,4 +121,4 @@ $ ls private/blaketest.engr.tamu.edu.key
 ```
 
 So you could go to your *engr_certs/private* directory and get the private key to use with the certificate that you
-downloaded from cert.tamu.edu. Now you have the public/private pair that you need to use the certificate.
+downloaded from cert.tamu.edu. **That gives you the public/private pair that you need to use the certificate.**
