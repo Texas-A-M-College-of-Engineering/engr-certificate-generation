@@ -106,10 +106,6 @@ directory):
 ```bash
 $ ls certs/blaketest.engr.tamu.edu.csr
 ```
-which would show up as
-```
-certs/blaketest.engr.tamu.edu.csr
-```
 
 You could copy/paste the contents of this file, or you could upload the file itself to cert.tamu.edu. Cert.tamu.edu
 gives you both options when creating a certificate.
@@ -126,10 +122,5 @@ your *engr_certs* directory):
 $ ls private/blaketest.engr.tamu.edu.key
 ```
 
-which would show up as:
-``` 
-private/blaketest.engr.tamu.edu.key
-```
-
 So you could go to your *engr_certs/private* directory and get the private key to use with the certificate that you
-downloaded from cert.tamu.edu. Now you have the public/private pair that you need to use the certificate somewhere.
+downloaded from cert.tamu.edu. Now you have the public/private pair that you need to use the certificate.
