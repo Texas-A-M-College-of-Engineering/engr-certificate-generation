@@ -20,6 +20,7 @@ Now reboot your machine.
 ```bash
 PS > wsl
 PS > sh <(curl -L https://nixos.org/nix/install) --no-daemon
+PS > . ~/.nix-profile/etc/profile.d/nix.sh
 ```
 
 ### Installing Nix on Mac
@@ -58,7 +59,11 @@ If you've installed both Nix and the engr-cert-gen application, you can generate
 1. Switch to your certificate working directory (or create one if this is your first time)
 This command creates a certificate working directory if it doesn't exist, and switches to it
 ```bash
-$ cd ~/engr_certs || mkdir ~/engr_certs && cd ~/engr_certs
+$ cd ~/engr_certs 2>/dev/null || mkdir ~/engr_certs && cd ~/engr_certs
+```
+Or, if your certificate working already exists, you can just change to it like this:
+```bash
+$ cd ~/engr_certs
 ```
 2. Generate the CSR for your cert using the FQDN. In this case, I use *blaketest.engr.tamu.edu*. Note that I've
 only included one FQDN, *blaketest.engr.tamu.edu*, so this will not be a SAN cert, just a normal one.
@@ -119,6 +124,12 @@ your *engr_certs* directory):
 ```bash
 $ ls private/blaketest.engr.tamu.edu.key
 ```
+
+**Note: If you are using WSL2, then you can get to your home directory by going to:**
+```
+\\wsl$\home
+```
+from Windows File Explorer. 
 
 So you could go to your *engr_certs/private* directory and get the private key to use with the certificate that you
 downloaded from cert.tamu.edu. **That gives you the public/private pair that you need to use the certificate.**
