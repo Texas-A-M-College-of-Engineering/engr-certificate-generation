@@ -127,7 +127,7 @@ $ ls private/blaketest.engr.tamu.edu.key
 
 **Note: If you are using WSL2, then you can get to your home directory by going to:**
 ```
-\\wsl$\home
+\\wsl$\Ubuntu\home
 ```
 from Windows File Explorer. 
 
